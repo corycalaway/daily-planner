@@ -43,10 +43,10 @@ var createTimeBlocks = function () {
     $(timeBlockHour).append(taskRow);
     
 
-    var taskTime = $('<div>').addClass('col').text(hourArray[index]);
+    var taskTime = $('<div>').addClass('col-1').text(hourArray[index]);
     $(taskRow).append(taskTime);
 
-    var taskText = $('<div> <input type="text" class="textarea" </div>').addClass('col');
+    var taskText = $('<input type="text" class="textarea">').addClass('col-10');
     $(taskRow).append(taskText);
   
     // hourIdCounter++;
