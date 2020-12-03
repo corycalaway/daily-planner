@@ -43,13 +43,18 @@ var createTimeBlocks = function () {
     $(timeBlockHour).append(taskRow);
     
     if (hourArray[index] > 12) {
-    var taskTime = $('<div>').addClass('col-1').text(hourArray[index] - 12);
+    var taskTime = $('<div>').addClass('col-1').text(hourArray[index] - 12 + "PM");
     $(taskRow).append(taskTime);
     }
-    if (hourArray[index] <= 12) {
-        var taskTime = $('<div>').addClass('col-1').text(hourArray[index]);
+    else if (hourArray[index] < 12) {
+        var taskTime = $('<div>').addClass('col-1').text(hourArray[index] + "AM");
         $(taskRow).append(taskTime);
         }
+    else if (hourArray[index] = 12) {
+        var taskTime = $('<div>').addClass('col-1').text(hourArray[index] + "PM");
+        $(taskRow).append(taskTime);
+        }
+    
     if (dateTime.hour > hourArray[index]) {
     var taskText = $('<input type="text" class="textarea">').addClass('col-10 past');
     $(taskRow).append(taskText);
