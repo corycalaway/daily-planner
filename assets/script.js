@@ -13,19 +13,19 @@ var setTimeDate = function () {
 var createTimeBlocks = function () {
   // time aray
   var hourArray = [
-    "5:00 AM",
-    "6:00 AM",
-    "7:00 AM",
-    "8:00 AM",
-    "9:00 AM",
-    "10:00 AM",
-    "11:00 AM",
-    "12:00 PM",
-    "1:00 PM",
-    "2:00 PM",
-    "3:00 PM",
-    "4:00 PM",
-    "5:00 PM",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
   ];
   // create ul element
   var timeBlockEl = $("<ul></ul>");
@@ -46,9 +46,10 @@ var createTimeBlocks = function () {
     var taskTime = $('<div>').addClass('col-1').text(hourArray[index]);
     $(taskRow).append(taskTime);
 
-    var taskText = $('<input type="text" class="textarea">').addClass('col-10');
+    if (dateTime.hour > hourArray[index]) {
+    var taskText = $('<input type="text" class="textarea">').addClass('col-10 past');
     $(taskRow).append(taskText);
-  
+    }
     // hourIdCounter++;
   });
 };
