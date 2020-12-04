@@ -26,6 +26,12 @@ var createTimeBlocks = function () {
     "15",
     "16",
     "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
   ];
   // create ul element
   var timeBlockEl = $("<ul></ul>");
@@ -42,6 +48,7 @@ var createTimeBlocks = function () {
     var taskRow = $('<div>').addClass('row hour')
     $(timeBlockHour).append(taskRow);
     
+    // creates time values with am/pm
     if (hourArray[index] > 12) {
     var taskTime = $('<div>').addClass('col-1').text(hourArray[index] - 12 + "PM");
     $(taskRow).append(taskTime);
@@ -50,17 +57,24 @@ var createTimeBlocks = function () {
         var taskTime = $('<div>').addClass('col-1').text(hourArray[index] + "AM");
         $(taskRow).append(taskTime);
         }
+        // truthy statement 
     else if (hourArray[index] = 12) {
         var taskTime = $('<div>').addClass('col-1').text(hourArray[index] + "PM");
         $(taskRow).append(taskTime);
-        }
+        };
     
     if (dateTime.hour > hourArray[index]) {
     var taskText = $('<input type="text" class="textarea">').addClass('col-10 past');
     $(taskRow).append(taskText);
-    }
+
+    } else if (dateTime.hour < hourArray[index]) {
+    var taskText = $('<input type="text" class="textarea">').addClass('col-10 future');
+    $(taskRow).append(taskText);
+    } else if (dateTime.hour = hourArray[index]) {
+    var taskText = $('<input type="text" class="textarea">').addClass('col-10 present');
+    $(taskRow).append(taskText);
     // hourIdCounter++;
-  });
+  }});
 };
 
 setTimeDate();
