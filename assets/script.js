@@ -10,11 +10,7 @@ var setTimeDate = function () {
   var dateMonth = { weekday: "long", month: "long", day: "2-digit" };
   timeEl.textContent = dateTime.toLocaleString(dateMonth);
 };
-
-// create time blocks
-var createTimeBlocks = function () {
-  // time aray
-  var hourArray = [
+var hourArray = [
     "5",
     "6",
     "7",
@@ -34,6 +30,10 @@ var createTimeBlocks = function () {
     "21",
     "22",
   ];
+// create time blocks
+var createTimeBlocks = function () {
+  // time aray
+  
   // create ul element
  // var timeBlockEl = $("<ul></ul>");
   // append ul
@@ -88,30 +88,39 @@ var createTimeBlocks = function () {
     }
 
     // add ave btn icon
-    var saveTaskBtn = $("<button>").attr('id', 'saveButtonTask').addClass("col-1 fa fa-save saveBtn");
+    var saveTaskBtn = $("<button>").attr('id', 'saveButtonTask' + hourArray[index]).addClass("col-1 fa fa-save saveBtn");
     $(taskRow).append(saveTaskBtn);
   });
 };
 
-
-
-//create function for click event on save button saveTastBtn
-$('#saveButtonTask').on('click', function(event) {
- event.preventDefault();
-// // get value .val() .trim() from text box <input type="text" class="textarea col-10 past">
-var textBoxValue = ('textId ' + hourArray[index])
- .val()
- .trim();
-// // add the var to local storage
-// //array.push(var)
-list.push(textBoxValue);
-// // update createTimeBlocks function with local storage var
-// localStorage.setItem('saveTextList')
-// // save the 
-localStorage.setItem(saveTextList)
- });
 setTimeDate();
 createTimeBlocks();
+
+//create function for click event on save button saveTastBtn
+//  document.getElementById('saveButtonTask').addEventListener('click', function (){
+//     console.log('made it')
+//  });
+//for ( var i = 0); i 
+//$.each(hourArray, function (index, value) {
+for (i = 0; i < hourArray.length; i++) {
+ $('#saveButtonTask' + hourArray[i]).on('click', function(event) {
+  event.preventDefault();
+  console.log('2+2')
+
+ var textBoxValue = $(this).closest('button').attr('id')
+ 
+console.log(textBoxValue)
+ list.push(textBoxValue);
+
+ localStorage.setItem(saveTextList)
+});}
+ // // update createTimeBlocks function with local storage var
+// localStorage.setItem('saveTextList')
+// // save the 
+// // add the var to local storage
+// //array.push(var)
+// // get value .val() .trim() from text box <input type="text" class="textarea col-10 past">
+
 
 
 
