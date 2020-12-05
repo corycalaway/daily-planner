@@ -41,40 +41,55 @@ var createTimeBlocks = function () {
   // cycle through each hour in array and creat li element appended to
   //for(var i = 0; i < hourArray.length; i++) {
   $.each(hourArray, function (index, value) {
-    var timeBlockHour = $("<li>")
+    var timeBlockHour = $("<li>");
     //.addClass("hour").text(hourArray[index]);
     $(timeBlockEl).append(timeBlockHour);
 
-    var taskRow = $('<div>').addClass('row hour')
+    var taskRow = $("<div>").addClass("row hour");
     $(timeBlockHour).append(taskRow);
-    
+
     // creates time values with am/pm
     if (hourArray[index] > 12) {
-    var taskTime = $('<div>').addClass('col-1').text(hourArray[index] - 12 + "PM");
-    $(taskRow).append(taskTime);
+      var taskTime = $("<div>")
+        .addClass("col-1")
+        .text(hourArray[index] - 12 + "PM");
+      $(taskRow).append(taskTime);
+    } else if (hourArray[index] < 12) {
+      var taskTime = $("<div>")
+        .addClass("col-1")
+        .text(hourArray[index] + "AM");
+      $(taskRow).append(taskTime);
     }
-    else if (hourArray[index] < 12) {
-        var taskTime = $('<div>').addClass('col-1').text(hourArray[index] + "AM");
-        $(taskRow).append(taskTime);
-        }
-        // truthy statement 
-    else if (hourArray[index] = 12) {
-        var taskTime = $('<div>').addClass('col-1').text(hourArray[index] + "PM");
-        $(taskRow).append(taskTime);
-        };
-    
-    if (dateTime.hour > hourArray[index]) {
-    var taskText = $('<input type="text" class="textarea">').addClass('col-10 past');
-    $(taskRow).append(taskText);
+    // truthy statement
+    else if ((hourArray[index] = 12)) {
+      var taskTime = $("<div>")
+        .addClass("col-1")
+        .text(hourArray[index] + "PM");
+      $(taskRow).append(taskTime);
+    }
 
+    if (dateTime.hour > hourArray[index]) {
+      var taskText = $('<input type="text" class="textarea">').addClass(
+        "col-10 past"
+      );
+      $(taskRow).append(taskText);
     } else if (dateTime.hour < hourArray[index]) {
-    var taskText = $('<input type="text" class="textarea">').addClass('col-10 future');
-    $(taskRow).append(taskText);
-    } else if (dateTime.hour = hourArray[index]) {
-    var taskText = $('<input type="text" class="textarea">').addClass('col-10 present');
-    $(taskRow).append(taskText);
-    // hourIdCounter++;
-  }});
+      var taskText = $('<input type="text" class="textarea">').addClass(
+        "col-10 future"
+      );
+      $(taskRow).append(taskText);
+    } else if ((dateTime.hour = hourArray[index])) {
+      var taskText = $('<input type="text" class="textarea">').addClass(
+        "col-10 present"
+      );
+      $(taskRow).append(taskText);
+      // hourIdCounter++;
+    }
+
+    // add ave btn icon
+    var saveTaskBtn = $("<div>").addClass("col-1 fa fa-save saveBtn");
+    $(taskRow).append(saveTaskBtn);
+  });
 };
 
 setTimeDate();
