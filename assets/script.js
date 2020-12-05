@@ -2,6 +2,8 @@ var timeEl = document.querySelector("#timeToday");
 //var timePlace = document.querySelector('#timeHolder');
 var hourIdCounter = 0;
 
+ var list = JSON.parse(localStorage.getItem('saveTextList')) || [];
+
 // date displayed at top of page
 var setTimeDate = function () {
   dateTime = luxon.DateTime.local();
@@ -31,7 +33,6 @@ var createTimeBlocks = function () {
     "20",
     "21",
     "22",
-    "23",
   ];
   // create ul element
  // var timeBlockEl = $("<ul></ul>");
@@ -69,17 +70,17 @@ var createTimeBlocks = function () {
     }
 
     if (dateTime.hour > hourArray[index]) {
-      var taskText = $('<input type="text" class="textarea">').addClass(
+      var taskText = $('<input type="text" class="textarea">').attr('id', 'textId ' + hourArray[index]).addClass(
         "col-10 past"
       );
       $(taskRow).append(taskText);
     } else if (dateTime.hour < hourArray[index]) {
-      var taskText = $('<input type="text" class="textarea">').addClass(
+      var taskText = $('<input type="text" class="textarea">').attr('id', 'textId ' + hourArray[index]).addClass(
         "col-10 future"
       );
       $(taskRow).append(taskText);
     } else if ((dateTime.hour = hourArray[index])) {
-      var taskText = $('<input type="text" class="textarea">').addClass(
+      var taskText = $('<input type="text" class="textarea">').attr('id', 'textId ' + hourArray[index]).addClass(
         "col-10 present"
       );
       $(taskRow).append(taskText);
@@ -87,10 +88,31 @@ var createTimeBlocks = function () {
     }
 
     // add ave btn icon
-    var saveTaskBtn = $("<div>").addClass("col-1 fa fa-save saveBtn");
+    var saveTaskBtn = $("<button>").attr('id', 'saveButtonTask').addClass("col-1 fa fa-save saveBtn");
     $(taskRow).append(saveTaskBtn);
   });
 };
 
+
+
+//create function for click event on save button saveTastBtn
+$('#saveButtonTask').on('click', function(event) {
+ event.preventDefault();
+// // get value .val() .trim() from text box <input type="text" class="textarea col-10 past">
+var textBoxValue = ('textId ' + hourArray[index])
+ .val()
+ .trim();
+// // add the var to local storage
+// //array.push(var)
+list.push(textBoxValue);
+// // update createTimeBlocks function with local storage var
+// localStorage.setItem('saveTextList')
+// // save the 
+localStorage.setItem(saveTextList)
+ });
 setTimeDate();
 createTimeBlocks();
+
+
+
+//use set interval to update colors
