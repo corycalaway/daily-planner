@@ -34,36 +34,36 @@ var createTimeBlocks = function () {
     "23",
   ];
   // create ul element
-  var timeBlockEl = $("<ul></ul>");
+ // var timeBlockEl = $("<ul></ul>");
   // append ul
-  $("div").append(timeBlockEl);
+ // $("div").append(timeBlockEl);
 
   // cycle through each hour in array and creat li element appended to
   //for(var i = 0; i < hourArray.length; i++) {
   $.each(hourArray, function (index, value) {
-    var timeBlockHour = $("<li>");
+   // var timeBlockHour = $("<li>");
     //.addClass("hour").text(hourArray[index]);
-    $(timeBlockEl).append(timeBlockHour);
+   // $(timeBlockEl).append(timeBlockHour);
 
-    var taskRow = $("<div>").addClass("row hour");
-    $(timeBlockHour).append(taskRow);
+    var taskRow = $("<div>").addClass("row");
+    $('#timeHolder').append(taskRow);
 
     // creates time values with am/pm
     if (hourArray[index] > 12) {
       var taskTime = $("<div>")
-        .addClass("col-1")
+        .addClass("col-1 hour")
         .text(hourArray[index] - 12 + "PM");
       $(taskRow).append(taskTime);
     } else if (hourArray[index] < 12) {
       var taskTime = $("<div>")
-        .addClass("col-1")
+        .addClass("col-1 hour")
         .text(hourArray[index] + "AM");
       $(taskRow).append(taskTime);
     }
     // truthy statement
     else if ((hourArray[index] = 12)) {
       var taskTime = $("<div>")
-        .addClass("col-1")
+        .addClass("col-1 hour")
         .text(hourArray[index] + "PM");
       $(taskRow).append(taskTime);
     }
