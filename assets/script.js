@@ -72,24 +72,40 @@ var createTimeBlocks = function () {
     if (dateTime.hour > hourArray[index]) {
       var taskText = $('<input type="text" class="textarea">').attr('id', 'textId ' + hourArray[index]).addClass(
         "col-10 past"
+        
       );
       $(taskRow).append(taskText);
+      // save button
+      var saveTaskBtn = $("<button onclick='saveFullText();'>").attr('id', 'saveButtonTask' + hourArray[index]).addClass("col-1 fa fa-save saveBtn");
+        $(taskRow).append(saveTaskBtn);
+      $(taskText).append('<p>')
+// need to add text into text input
+
     } else if (dateTime.hour < hourArray[index]) {
       var taskText = $('<input type="text" class="textarea">').attr('id', 'textId ' + hourArray[index]).addClass(
         "col-10 future"
+    
       );
       $(taskRow).append(taskText);
+
+      // save button
+      var saveTaskBtn = $("<button onclick='saveFullText();'>").attr('id', 'saveButtonTask' + hourArray[index]).addClass("col-1 fa fa-save saveBtn");
+        $(taskRow).append(saveTaskBtn);
+
     } else if ((dateTime.hour = hourArray[index])) {
       var taskText = $('<input type="text" class="textarea">').attr('id', 'textId ' + hourArray[index]).addClass(
         "col-10 present"
       );
       $(taskRow).append(taskText);
+      // save button
+      var saveTaskBtn = $("<button onclick='saveFullText();'>").attr('id', 'saveButtonTask' + hourArray[index]).addClass("col-1 fa fa-save saveBtn");
+        $(taskRow).append(saveTaskBtn);
       // hourIdCounter++;
     }
 
     // add ave btn icon
-    var saveTaskBtn = $("<button>").attr('id', 'saveButtonTask' + hourArray[index]).addClass("col-1 fa fa-save saveBtn");
-    $(taskRow).append(saveTaskBtn);
+    //var saveTaskBtn = $("<button>").attr('id', 'saveButtonTask' + hourArray[index]).addClass("col-1 fa fa-save saveBtn");
+    //$(taskRow).append(saveTaskBtn);
   });
 };
 
@@ -100,20 +116,26 @@ createTimeBlocks();
 //  document.getElementById('saveButtonTask').addEventListener('click', function (){
 //     console.log('made it')
 //  });
+
+var saveFullText = function() {
+    console.log('test')
+}
 //for ( var i = 0); i 
-//$.each(hourArray, function (index, value) {
-for (i = 0; i < hourArray.length; i++) {
- $('#saveButtonTask' + hourArray[i]).on('click', function(event) {
+$.each(hourArray, function (index, value) {
+//for (i = 0; i < hourArray.length; i++) {
+ $('#saveButtonTask' + hourArray[index]).on('click', function(event) {
   event.preventDefault();
   console.log('2+2')
 
- var textBoxValue = $(this).closest('button').attr('id')
- 
+ //var textBoxValue = $(this).closest('button').attr('id')
+ var textBoxValue = $(this).parent('input')
+ .val()
+ //.trim()
 console.log(textBoxValue)
  list.push(textBoxValue);
 
- localStorage.setItem(saveTextList)
-});}
+ localStorage.setItem('saveTextList', JSON.stringify(list))
+});})
  // // update createTimeBlocks function with local storage var
 // localStorage.setItem('saveTextList')
 // // save the 
