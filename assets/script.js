@@ -76,7 +76,7 @@ console.log(list)
         .attr("id", "textId" + hourArray[index])
         .addClass("col-10 past anchors");
         $(taskText).val(list[index])
-        console.log()
+        
       $(taskRow).append(taskText);
       // save button
       var saveTaskBtn = $("<button onclick='saveFullText();'>")
@@ -89,6 +89,7 @@ console.log(list)
       var taskText = $('<input type="text" class="textarea">')
         .attr("id", "textId" + hourArray[index])
         .addClass("col-10 future anchors");
+        $(taskText).val(list[index])
       $(taskRow).append(taskText);
 
       // save button
@@ -100,6 +101,7 @@ console.log(list)
       var taskText = $('<input type="text" class="textarea">')
         .attr("id", "textId" + hourArray[index])
         .addClass("col-10 present anchors");
+        $(taskText).val(list[index])
       $(taskRow).append(taskText);
       // save button
       var saveTaskBtn = $("<button onclick='saveFullText();'>")
