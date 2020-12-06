@@ -35,12 +35,16 @@ var hourArray = [
 // create time blocks
 var createTimeBlocks = function () {
   // time aray
+  $('#timeHolder').remove()
+
+  
 console.log(list)
   // create ul element
   // var timeBlockEl = $("<ul></ul>");
   // append ul
   // $("div").append(timeBlockEl);
-
+    var createNewHolder = $("<div>").attr('id', 'timeHolder').addClass('container')
+    $('body').append(createNewHolder)
   // cycle through each hour in array and creat li element appended to
   //for(var i = 0; i < hourArray.length; i++) {
   $.each(hourArray, function (index, value) {
@@ -49,7 +53,7 @@ console.log(list)
     // $(timeBlockEl).append(timeBlockHour);
 
     var taskRow = $("<div>").addClass("row");
-    $("#timeHolder").append(taskRow);
+    $(createNewHolder).append(taskRow);
 
     // creates time values with am/pm
     if (hourArray[index] > 12) {
@@ -145,6 +149,9 @@ var saveFullText = function () {
   });
   localStorage.setItem('saveTextList', JSON.stringify(list))
 };
+
+setInterval(function(){createTimeBlocks();}, 5 * 60 * 1000 )
+
 //for ( var i = 0); i
 
 // $.each(hourArray, function (index, value) {
