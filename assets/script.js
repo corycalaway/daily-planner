@@ -68,22 +68,22 @@ var createTimeBlocks = function () {
         .text(hourArray[index] + "PM");
       $(taskRow).append(taskTime);
     }
-
+//edit from
     if (dateTime.hour > hourArray[index]) {
-      var taskText = $('<input type="text" class="textarea">').attr('id', 'textId ' + hourArray[index]).addClass(
-        "col-10 past"
+      var taskText = $('<input type="text" class="textarea">').attr('id', 'textId' + hourArray[index]).addClass(
+        "col-10 past anchors"
         
       );
       $(taskRow).append(taskText);
       // save button
       var saveTaskBtn = $("<button onclick='saveFullText();'>").attr('id', 'saveButtonTask' + hourArray[index]).addClass("col-1 fa fa-save saveBtn");
         $(taskRow).append(saveTaskBtn);
-      $(taskText).append('<p>')
+      //$(taskText).append('<p>')
 // need to add text into text input
 
     } else if (dateTime.hour < hourArray[index]) {
-      var taskText = $('<input type="text" class="textarea">').attr('id', 'textId ' + hourArray[index]).addClass(
-        "col-10 future"
+      var taskText = $('<input type="text" class="textarea">').attr('id', 'textId' + hourArray[index]).addClass(
+        "col-10 future anchors"
     
       );
       $(taskRow).append(taskText);
@@ -93,8 +93,8 @@ var createTimeBlocks = function () {
         $(taskRow).append(saveTaskBtn);
 
     } else if ((dateTime.hour = hourArray[index])) {
-      var taskText = $('<input type="text" class="textarea">').attr('id', 'textId ' + hourArray[index]).addClass(
-        "col-10 present"
+      var taskText = $('<input type="text" class="textarea">').attr('id', 'textId' + hourArray[index]).addClass(
+        "col-10 present anchors"
       );
       $(taskRow).append(taskText);
       // save button
@@ -119,23 +119,43 @@ createTimeBlocks();
 
 var saveFullText = function() {
     console.log('test')
-}
-//for ( var i = 0); i 
-$.each(hourArray, function (index, value) {
-//for (i = 0; i < hourArray.length; i++) {
- $('#saveButtonTask' + hourArray[index]).on('click', function(event) {
-  event.preventDefault();
-  console.log('2+2')
+  $.each(hourArray, function (index, value) {
 
- //var textBoxValue = $(this).closest('button').attr('id')
- var textBoxValue = $(this).parent('input')
- .val()
- //.trim()
-console.log(textBoxValue)
+    var textAnchor = document.getElementsByClassName('anchors')[index].id;
+    //console.log(textAnchor)
+    
+    //  //var textBoxValue = $(this).closest('button').attr('id')
+  var textBoxValue = $('#' + textAnchor)
+
+  .val()
+ .trim();
+ console.log(textBoxValue)
+
+//  //.trim()
  list.push(textBoxValue);
+ console.log(list)
+})}
+//for ( var i = 0); i 
 
- localStorage.setItem('saveTextList', JSON.stringify(list))
-});})
+
+// $.each(hourArray, function (index, value) {
+// //for (i = 0; i < hourArray.length; i++) {
+//  $('#saveButtonTask' + hourArray[index]).on('click', function(event) {
+//   event.preventDefault();
+//   console.log('2+2')
+
+//  //var textBoxValue = $(this).closest('button').attr('id')
+//  var textBoxValue = $(this).parent('input')
+//  .val()
+//  //.trim()
+// console.log(textBoxValue)
+//  list.push(textBoxValue);
+
+//  localStorage.setItem('saveTextList', JSON.stringify(list))
+// });})
+
+
+
  // // update createTimeBlocks function with local storage var
 // localStorage.setItem('saveTextList')
 // // save the 
